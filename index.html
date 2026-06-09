@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OS Tracker — Informática</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+</script>
+<script src="js/function.js" defer></script>
+
+<body>
+
+<div class="app">
+  <header>
+    <div class="logo">TR<span>.</span>ACKING</div>
+    <div class="header-sub"> || SISTEMA SEGUIMIENTO ENVIÓS - INFORMÁTICA</div>
+  </header>
+
+  <div class="main-grid">
+
+    <div>
+      <div class="panel">
+        <div class="panel-header">
+          <div class="dot"></div>
+          <span class="panel-title">Consultar OS</span>
+        </div>
+        <div class="panel-body">
+
+          <div class="field-group">
+            <label class="field-label" for="osInput">Número de OS</label>
+            <input type="text" id="osInput" placeholder="Ejemplo: 0123456789" maxlength="60"/>
+          </div>
+
+          <button class="btn btn-primary" onclick="consultarOS()" style="margin-bottom:12px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Consultar PDF
+          </button>
+
+          <div class="status-msg" id="statusMsg"></div>
+
+          <div class="result-box" id="resultBox">
+            <div class="result-os" id="resultOsNum">OS #</div>
+            <div class="result-fields" id="resultFields"></div>
+            <a class="pdf-link" id="pdfLink" href="#" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Ver PDF original
+            </a>
+
+            <div class="add-form" id="addForm">
+              <div class="add-form-title">— Agregar al registro</div>
+
+              <div class="field-group">
+                <label class="field-label">Estado inicial</label>
+                <select id="estadoSelect">
+                  <option value="pendiente">Pendiente</option>
+                  <option value="recibido">Recibido</option>
+                  <option value="reparacion">En reparación</option>
+                  <option value="entregado">Entregado</option>
+                  <option value="bodega">En bodega</option>
+                  <option value="descartado">Descartado</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Nota interna</label>
+                <input type="text" id="notaInput" placeholder="Ej: Laptop sin cargador, pendiente revisión"/>
+              </div>
+
+              <button class="btn btn-success" onclick="agregarRegistro()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Agregar a tabla
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Registro de órdenes</div>
+
+      <div class="stats-bar" id="statsBar"></div>
+
+      <div class="export-row">
+        <button class="btn" onclick="exportarCSV()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar CSV
+        </button>
+        <button class="btn" onclick="limpiarTodo()" style="color:var(--red)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+          Limpiar todo
+        </button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>OS</th>
+              <th>Remitente</th>
+              <th>Origen</th>
+              <th>Estado</th>
+              <th>Nota</th>
+              <th>Fecha</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr class="empty-row"><td colspan="7">sin registros — consulta una OS para comenzar</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
