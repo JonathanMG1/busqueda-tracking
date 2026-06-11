@@ -905,7 +905,7 @@ function renderTabla() {
     <tr>
       <td class="os-cell">${esc(r.os)}</td>
       <td class="text-muted">${esc(r.remitente)}</td>
-      <td class="text-muted">${esc(r.origen)}</td>
+      <td class="text-muted">${esc(r.equipos)}</td>
       <td class="td-select">
         <select onchange="cambiarEstado(${r.id}, this.value)">
           ${ESTADOS.map(e =>
