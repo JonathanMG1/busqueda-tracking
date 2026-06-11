@@ -193,8 +193,7 @@ async function consultarOS() {
     const origen    = texto.match(/DIR REMITENTE:\s*(.*?)\s{2,}/i)?.[1]      || null;
     const destino   = texto.match(/ENVIAR A:\s*(.*?)\s{2,}/i)?.[1]           || null;
     const ref   = texto.match(/REF:\s*(.*?)\s{2,}/i)?.[1]           || null;
-    const fecha     = texto.match(/\b(\d{2}\/\d{2}\/\d{4})\b/)?.[1]          || null;
-
+    const fecha = texto.match(/\b(\d{4}-\d{2}-\d{2})T/)?.[1] || null;
     lastInfo = {
       os_numero:  os,
       remitente,
