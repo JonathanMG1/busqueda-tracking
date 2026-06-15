@@ -11,7 +11,7 @@
   --text:        #111827;
   --text2:       #4b5563;
   --text3:       #9ca3af;
-  --text4:       #d1d5db;
+  --text4:       #5a5b5d;
   --accent:      #2563eb;
   --accent-lt:   #eff4ff;
   --accent-md:   #bfcffd;
@@ -548,35 +548,35 @@ td{
   -webkit-appearance:none;
 }
 
-/* ── NOTA EN TABLA ── */
-.td-nota input{
+
+.td-nota textarea{
   font-size:13px;
+  font-family:var(--font);
   padding:5px 9px;
   background:transparent;
   border:1.5px solid transparent;
   border-radius:var(--radius);
   width:100%;
-  min-width:150px;
-  max-width:250px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  min-width:160px;
   color:var(--text2);
+  resize:none;
+  overflow:hidden;
+  line-height:1.4;
   transition:border-color .15s, background .15s;
+  field-sizing:content;
 }
 
-.td-nota input:hover{
+.td-nota textarea:hover{
   border-color:var(--border);
   background:var(--surface2);
 }
 
-.td-nota input:focus{
+.td-nota textarea:focus{
   border-color:var(--accent);
   background:var(--surface);
-  text-overflow:clip;
   box-shadow:0 0 0 3px rgba(37,99,235,.08);
+  outline:none;
 }
-
 /* ── BOTÓN ELIMINAR ── */
 .del-btn{
   background:none;
