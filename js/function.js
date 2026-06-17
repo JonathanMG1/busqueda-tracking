@@ -152,7 +152,7 @@ function inyectarControles() {
   searchWrap.style.cssText = "margin-bottom:10px;";
   searchWrap.innerHTML = `
     <input type="text" id="searchInput"
-      placeholder="Buscar por OS, remitente u origen..." />`;
+      placeholder="Buscar por OS, remitente u responsable..." />`;
   seccion.after(searchWrap);
 
   const filtrosWrap = document.createElement("div");
@@ -419,10 +419,10 @@ function renderTabla() {
   const pagina = filtrados.slice(inicio, inicio + POR_PAGINA);
 
   if (!pagina.length) {
-    tbody.innerHTML = `<tr class="empty-row"><td colspan="7">${
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="8">${
       busqueda || filtroEstado !== "todos"
-        ? "Sin resultados para la búsqueda o filtro actual"
-        : "Sin registros — consulta una OS para comenzar"
+        ? "SIN RESULTADOS PARA LA BÚSQUEDA O FILTRO APLICADO"
+        : "SIN REGISTROS — CONSULTA UNA OS "
     }</td></tr>`;
     renderPaginacion(0, 1);
     return;
