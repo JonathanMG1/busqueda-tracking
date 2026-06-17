@@ -17,8 +17,8 @@ const ESTADOS = [
   { val: "pendiente", label: "Pendiente", cls: "b-pendiente" },
   { val: "recibido", label: "Recibido", cls: "b-recibido" },
   { val: "reparacion", label: "En reparación", cls: "b-reparacion" },
-  // { val:"entregado",  label:"Entregado",     cls:"b-entregado" },
-  // { val:"bodega",     label:"En bodega",     cls:"b-bodega" },
+  { val:"enviaddo",  label:"Enviado",     cls:"b-enviado" },
+  { val:"configurando",     label:"Configurando",     cls:"b-configurando" },
   // { val:"descartado", label:"Descartado",    cls:"b-descartado" }
 ];
 const RESPONSABLES = [
@@ -554,8 +554,8 @@ function renderStats() {
     recibido: "green",
     reparacion: "amber",
     entregado: "accent",
-    descartado: "red",
-    bodega: "purple",
+    configurando: "red",
+    enviado: "purple",
   };
 
   bar.innerHTML = `
