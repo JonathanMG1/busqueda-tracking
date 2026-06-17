@@ -253,7 +253,7 @@ async function consultarOS() {
     const origen = texto.match(/DIR REMITENTE:\s*(.*?)\s{2,}/i)?.[1] || null;
     const destino = texto.match(/ENVIAR A:\s*(.*?)\s{2,}/i)?.[1] || null;
     const ref = texto.match(/REF:\s*(.*?)\s{2,}/i)?.[1] || null;
-    const fechaISO = texto.match(/\b(\d{4}-\d{2}-\d{2})T/)?.[1] || null;
+    const fechaEnvio = texto.match(/KG\s*(.*?)\s{2,}/i)?.[1] || null;
 
     lastInfo = {
       os_numero: os,
@@ -261,7 +261,7 @@ async function consultarOS() {
       origen,
       equipos: destino,
       cantidad: "1",
-      fecha: fechaISO ? formatearFecha(fechaISO) : hoy(),
+      fechaEnvio,
       ref,
       estado_doc: "PDF Blue",
     };
@@ -283,7 +283,7 @@ function mostrarResultado(pdfUrl) {
     { k: "Remitente", v: lastInfo.remitente },
     { k: "Dirección origen", v: lastInfo.origen },
     { k: "Destino", v: lastInfo.equipos },
-    { k: "Fecha emisión", v: lastInfo.fecha },
+    { k: "Fecha Envio", v: lastInfo.fechaEnvio },
     { k: "REF", v: lastInfo.ref },
   ].filter((f) => f.v);
 
@@ -320,7 +320,7 @@ async function agregarRegistro() {
     estado,
     nota,
     responsable: document.getElementById("responsableSelect").value,
-    fecha: lastInfo.fecha || hoy(),
+    fechaEnvio: lastInfo.fechaEnvio,
   };
 
   registros.unshift(nuevo);
@@ -456,7 +456,7 @@ function renderTabla() {
           ).join("")}
         </select>
       </td>
-      <td class="text-dim">${esc(r.fecha)}</td>
+      <td class="text-dim">${esc(r.fechaEnvio)}</td>
       <td>
         <button class="del-btn" onclick="eliminar(${r.id})" title="Eliminar">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
