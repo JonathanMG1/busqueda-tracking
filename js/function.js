@@ -308,7 +308,8 @@ function mostrarResultado(pdfUrl) {
 
 async function agregarRegistro() {
   if (!lastInfo) return;
-  // Validar duplicado
+ 
+   // Validar duplicado
   const existe = registros.find(r => r.os === lastInfo.os_numero);
   if (existe) {
     setStatus("err", `La OS ${lastInfo.os_numero} ya está registrada`);
