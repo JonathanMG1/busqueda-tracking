@@ -17,7 +17,7 @@ const ESTADOS = [
   { val: "pendiente", label: "Pendiente", cls: "b-pendiente" },
   { val: "recibido", label: "Recibido", cls: "b-recibido" },
   { val: "reparacion", label: "En reparación", cls: "b-reparacion" },
-  { val:"enviaddo",  label:"Enviado",     cls:"b-enviado" },
+  { val:"enviado",  label:"Enviado",     cls:"b-enviado" },
   { val:"configurando",     label:"Configurando",     cls:"b-configurando" },
   // { val:"descartado", label:"Descartado",    cls:"b-descartado" }
 ];
@@ -192,7 +192,7 @@ function setFiltro(val) {
   renderTabla();
 }
 
-// ─── STATUS PANEL ─────────────────────────────────────────────────────────────
+// ─── Panel estado ─────────────────────────────────────────────────────────────
 
 function setStatus(tipo, msg) {
   const el = document.getElementById("statusMsg");
@@ -217,7 +217,7 @@ function setStatus(tipo, msg) {
   }
 }
 
-// ─── CONSULTA OS ──────────────────────────────────────────────────────────────
+// ─── CONSULTAR OS ──────────────────────────────────────────────────────────────
 
 async function consultarOS() {
   const os = document.getElementById("osInput").value.trim();
@@ -308,6 +308,12 @@ function mostrarResultado(pdfUrl) {
 
 async function agregarRegistro() {
   if (!lastInfo) return;
+  // Validar duplicado
+  const existe = registros.find(r => r.os === lastInfo.os_numero);
+  if (existe) {
+    setStatus("err", `La OS ${lastInfo.os_numero} ya está registrada`);
+    return;
+  }
   const estado = document.getElementById("estadoSelect").value;
   const nota = document.getElementById("notaInput").value.trim();
 
