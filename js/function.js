@@ -19,7 +19,7 @@ const ESTADOS = [
   { val: "reparacion", label: "En reparación", cls: "b-reparacion" },
   { val:"enviado",  label:"Enviado",     cls:"b-enviado" },
   { val:"configurando",     label:"Configurando",     cls:"b-configurando" },
-  // { val:"descartado", label:"Descartado",    cls:"b-descartado" }
+  { val:"recibidoti", label:"Recibido en TI",    cls:"b-recibido" }
 ];
 const RESPONSABLES = [
   "Sin asignar",
@@ -563,6 +563,7 @@ function renderStats() {
     entregado: "accent",
     configurando: "red",
     enviado: "purple",
+    recibidoti: "blue"
   };
 
   bar.innerHTML = `
